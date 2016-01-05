@@ -1,0 +1,7 @@
+<% provide(:title, 'Instructor Registration') %>
+<h1>Sign up</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= render :partial => 'instructor/new_instructor_form', locals: { instructor: @instructor} %>
+  </div>
+</div>

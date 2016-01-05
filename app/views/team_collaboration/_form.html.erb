@@ -1,0 +1,32 @@
+    <%= form_for(:teamCollaboration) do |f| %>
+    <% if flash[:notice] %>
+      <h3><%= flash[:notice] %></h3>
+    <% end %>
+    <br />
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <br />
+
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+      <br />
+
+      <%= f.label :maximumNumStudents %>
+      <%= f.number_field :maximumNumStudents %>
+      <br />
+
+      <%= f.label :minimumNumStudents %>
+      <%= f.number_field :minimumNumStudents %>
+      <br />
+
+      <%= f.label :dueDate %>
+      <%= f.date_select :dueDate %>
+      <br />
+
+      <%= f.label :teamFormationDeadline %>
+      <%= f.date_select :teamFormationDeadline %>
+      <%= f.hidden_field :courseid , :value => @course.id %>
+      <br />
+
+      <%= f.submit "Create Team Collaboration", class: "btn btn-primary" %>
+    <% end %>

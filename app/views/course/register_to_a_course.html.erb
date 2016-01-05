@@ -1,0 +1,11 @@
+<h2>Course Selection</h2>
+<div>
+	Please Selection Course a Course to Register to
+</div>
+    <% if flash[:notice] %>
+      <h3><%= flash[:notice] %></h3>
+    <% end %>
+<% current_user %>
+<% @courses.each do |c| %>
+ <p><%= button_to "Register " + c.name, courseRegistration_path(:courseRegistration => {:courseid => c.id, :studentid => current_user.id }), :method => :post %></p>
+ <% end %>

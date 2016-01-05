@@ -1,0 +1,22 @@
+<% current_user %>
+<% if @current_user.class == Instructor %>
+	<h1>Teams for <%= @teamCollaboration.name %></h1>
+	<p><%= @teamCollaboration.description %></p>
+	<p>Due Date: <%= @teamCollaboration.dueDate %></p>
+	<p>Maximum Number of Students Allowed: <%= @teamCollaboration.maximumNumStudents %></p>
+	<h2>Teams </h2>
+	<% @teams.each do |t| %>
+	 	<p><%= t.name %></p>
+	 <% end %>
+<% else %>
+	<h1>Incomplete Teams <%= @teamCollaboration.name %></h1>
+	<p><%= @teamCollaboration.description %></p>
+	<p>Due Date: <%= @teamCollaboration.dueDate %></p>
+	<p>Maximum Number of Students Allowed: <%= @teamCollaboration.maximumNumStudents %></p>
+	<% @incompleteTeams.each do |it| %>
+		<% if it != nil %>
+		 	<p><%= it.name %></p>
+		 	<%= button_to "Join Team", joinTeam_path(:team => {:teamid => it.id, :studentid => current_user.id }), :method => :put %></p>
+		<% end %>
+	<% end %>
+<% end %>

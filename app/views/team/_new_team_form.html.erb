@@ -1,0 +1,16 @@
+  	<% current_user %>
+    <%= form_for(:team) do |f| %>
+      <% if flash[:notice] %>
+      <h3><%= flash[:notice] %></h3>
+    <% end %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <br />
+
+      <%= f.label "List of Members: Enter student ids (including your own) seperated by  eg: s123456, s345678" %>
+      <br />
+      <%= f.text_area :listOfMembers %>
+      <%= f.hidden_field :teamcollaborationid, :value => @teamCollaboration.id %>
+      <%= f.submit "Create Team", class: "btn btn-primary" %>
+    <% end %>

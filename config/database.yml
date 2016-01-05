@@ -1,0 +1,16 @@
+# MySQL version 2.x
+#   gem install mysql2
+#
+#   Ensure the Mysql 2 gem is defined in your Gemfile
+#   gem 'mysql2'
+#
+default: &default
+  adapter: mysql2
+  username: root
+  password: 
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: team_management_system_ArcOSS

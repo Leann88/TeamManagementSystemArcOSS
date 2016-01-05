@@ -1,0 +1,33 @@
+<h1>Student Profile Page </h1>
+
+<p><%= @student.firstname %>  <%= @student.lastname%></p>
+<p><%= @student.email%>  <%= @student.program%></p>
+<p><%= link_to 'Course Registration', courseregistration_path(:id => @student.id)%></p>
+<h2>Registered Courses</h2>
+<% @student.find_registered_courses.each do |c| %>
+	<div style="border:2px solid black">
+	 <% c = Course.find(c.courseid) %>
+	 <h3><%= c.name %></h3>
+		 	<p>Team Collaborations</p>
+		 		<% c.find_collaborations.each do |tc| %>
+		 		<div style="border:1px solid black; width: 95%;  margin: 0 auto">
+		 		<p><%= tc.name %></p>
+		 		<p><%= tc.description %></p>
+		 		<p>Due Date: <%= tc.dueDate %></p>
+		 		<p>Team Formation Deadline: <%= tc.teamFormationDeadline %></p>
+		 		<p>Maximum Number of Students Allowed: <%= tc.maximumNumStudents %></p>
+		 		<% teamid = @student.in_team(tc.id) %>
+		 		<% if teamid != nil %>
+		 		<%= link_to "Team Page", teams_path(:id => teamid) %>
+		 		<% else %>
+		 			<% if DateTime.now.beginning_of_day <= tc.teamFormationDeadline %>
+		 				<%= link_to "Create Team", teamcreation_path(:tcid => tc.id) %>
+		 				<p><%= link_to 'Visualize Incomplete Teams: ' + tc.name, teamslist_path(:id => tc.id)%></p>
+		 			<% end %>
+		 		<% end %>
+		 	</div >
+		<% end %>
+		<br />
+	</div>
+	<br />
+<% end %>

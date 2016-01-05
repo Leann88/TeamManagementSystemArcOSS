@@ -1,0 +1,2 @@
+module TeamCollaborationHelper
+end

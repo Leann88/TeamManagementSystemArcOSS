@@ -1,0 +1,7 @@
+<% provide(:title, 'Student Registration') %>
+<h1>Sign up</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= render :partial => 'student/new_student_form', locals: { student: @student} %>
+  </div>
+</div>

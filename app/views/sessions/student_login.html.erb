@@ -1,0 +1,23 @@
+<% provide(:title, "Student Log in") %>
+<h1>Student Log in</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(:session, url: studentlogin_path) do |f| %>
+        <% if flash[:notice] %>
+          <h3><%= flash[:notice] %></h3>
+        <% end %>
+
+
+      <%= f.label :studentid %>
+      <%= f.text_field :studentid, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+    <% end %>
+
+    <p>New student? <%= link_to "Sign up now!", studentsignup_path  %></p>
+  </div>
+

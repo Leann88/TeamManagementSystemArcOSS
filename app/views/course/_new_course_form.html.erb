@@ -1,0 +1,17 @@
+  	<% current_user %>
+    <%= form_for(:course) do |f| %>
+    <%= render 'shared/course_error_messages' %>
+      <%= f.label :coursecode %>
+      <%= f.text_field :coursecode %>
+      <br />
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <br />
+
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+      <br />
+
+      <%= f.submit "Create Course", class: "btn btn-primary" %>
+    <% end %>

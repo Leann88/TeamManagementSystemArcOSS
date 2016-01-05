@@ -1,0 +1,7 @@
+<% provide(:title, 'Course Creation') %>
+<h1>Course Creation</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= render :partial => 'course/new_course_form', locals: { course: @course } %>
+  </div>
+</div>

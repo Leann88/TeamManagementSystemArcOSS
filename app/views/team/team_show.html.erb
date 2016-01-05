@@ -1,0 +1,20 @@
+<% current_user %>
+<h1>Team <%= @team.name %></h1>
+<p>Information for Team Collaboration: <%= @teamCollaboration.name %></p>
+	<p><%= @teamCollaboration.description %></p>
+	<p>Due Date: <%= @teamCollaboration.dueDate %></p>
+	<p>Maximum Number of Students Allowed: <%= @teamCollaboration.maximumNumStudents %></p>
+<% if flash[:notice] %>
+ <h3><%= flash[:notice] %></h3>
+<% end %>
+<h1>Members</h1>
+	<% @members.each do |m| %>
+	 	<p><%= m.firstname %>  <%= m.lastname %></p>
+	<% end %>
+<h1>Candidates</h1>
+	<% @candidates.each do |c| %>
+	 	<p><%= c.firstname %>  <%= c.lastname %></p>
+	 	<% if @current_user.id == @team.liaisonid && DateTime.now.beginning_of_day <= TeamCollaboration.find(@team.teamcollaborationid).teamFormationDeadline %>
+	 	<%= button_to "Accept Student", acceptStudent_path(:team => {:teamid => @team.id, :studentid => c.studentid}), :method => :put %></p>
+		<% end %>
+	<% end %>

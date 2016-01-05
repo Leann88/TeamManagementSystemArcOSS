@@ -1,0 +1,26 @@
+<h1>Instructor</h1>
+<p><%= @instructor.firstname %> <%= @instructor.lastname %></p>
+<p><%= @instructor.email %> <%= @instructor.program %></p>
+<%= link_to "Course Creation", newcourse_path %>
+<% @instructor.find_courses.each do |c| %>
+	<div style="border:2px solid black">
+		<div>
+		 	<h3><%= c.name %></h3>
+		 	<p><%= c.coursecode %></p>
+		 	<p><%= c.description %></p>
+		 	<p><%= link_to "Create new Team Collaborations", newteamcollaboration_path(:id => c.id) %></p>
+	 	</div>
+	 	<p>Team Collaborations</p>
+	 		<% c.find_collaborations.each do |tc| %>
+	 		<div style="border:1px solid black; width: 95%;  margin: 0 auto">
+		 		<p><%= tc.name %></p>
+		 		<p><%= tc.description %></p>
+		 		<p>Due Date: <%= tc.dueDate %></p>
+		 		<p>Maximum Number of Students Allowed: <%= tc.maximumNumStudents %></p>
+	 			<p><%= link_to 'Visualize Team: ' + tc.name, teamslist_path(:id => tc.id)%></p>
+	 		</div>
+		<% end %>
+		<br />
+	</div>
+	<br />
+<% end %>
